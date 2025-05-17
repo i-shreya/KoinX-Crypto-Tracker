@@ -1,3 +1,5 @@
+//SHREYA SONI, shreya.sonii@outlook.com
+
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -9,7 +11,9 @@ const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/koinx_crypt
 const CryptoStat = require('./models/CryptoStat');
 
 
-//Task 1: fecthing and stroing stats from CoinGecko
+//-------------------------------------------------------TASK 1-------------------------------------------------------
+
+//Task 1: fetching and storing stats from CoinGecko
 const storeCryptoStats = async () => {
   try {
     const response = await axios.get(
@@ -41,21 +45,19 @@ const storeCryptoStats = async () => {
   }
 };
 
-//calling once 
+// calling once 
 storeCryptoStats();
 
-//calling every 5 mins so that service runs repeatedly 
+// calling every 5 mins so that service runs repeatedly 
 // and the server keeps fetching and saving new data
-//to store 100 records
+// to store 100 records
 setInterval(storeCryptoStats, 300000); //300000 msec= 5 min
 
 
 // connecting mongodb
-mongoose.connect(
-  'mongodb+srv://shreyasonii:0xwjtQW3hSdFGMlt@cluster0.lzqwggk.mongodb.net/koinxDB?retryWrites=true&w=majority&appName=Cluster0',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+mongoose.connect(mongoUri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 })
 .then(async () => {
   console.log('Connected to MongoDB');
@@ -63,6 +65,8 @@ mongoose.connect(
 })
 .catch(err => console.error('MongoDB connection error:', err));
 
+
+//-------------------------------------------------------TASK 2-------------------------------------------------------
 
 //Task 2: return the latest data about the requested cryptocurrency.
 app.get('/stats', async (req, res) => {
@@ -90,11 +94,13 @@ try{
       "24hChange": latestStat.change24h,
     });
   } catch (err) {
-    console.error('Error in /stats:', error.message);
+    console.error('Error in /stats:', err.message);
     res.status(500).json({ error: 'Server error' });
   }
 });
 
+
+//-------------------------------------------------------TASK 3-------------------------------------------------------
 
 //Task 3: /deviation end point return standard deviation of last 100 records
 
@@ -128,7 +134,7 @@ app.get('/deviation', async (req, res) => {
   }
 });
 
-//endpoint to count the records in datavbase
+//endpoint to count the records in database
 app.get('/count', async (req, res) => {
   try {
     const count = await CryptoStat.countDocuments();
@@ -143,6 +149,8 @@ app.get('/', (req, res) => {
   res.send('API Server is running');
 });
 
+
+//-------------------------------------------------------TASK 4-------------------------------------------------------
 
 //Task 4: Subscribing to nats to trigger storeCryptoStats() function.
 
