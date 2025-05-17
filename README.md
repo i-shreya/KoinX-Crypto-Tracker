@@ -84,13 +84,13 @@ You can test the API endpoints locally once the servers are running.
     You can test other endpoints like /deviation, /count, or / similarly.
 - Using Browser:
   
-For simple GET requests, you can also test directly in your browser by navigating to URLs such as:
+    For simple GET requests, you can also test directly in your browser by navigating to URLs such as:
 
-http://localhost:5000/stats?coin=ethereum
+       http://localhost:5000/stats?coin=ethereum
 
-The browser will display the JSON response directly.
+    The browser will display the JSON response directly.
 
-You can test other endpoints like /deviation, /count with three different coins- bitcoin, ethereum, and matic-network
+    You can test other endpoints like /deviation, /count with three different coins- bitcoin, ethereum, and matic-network
 
 ## Output
 When you call the endpoint to fetch crypto stats, you should receive a JSON response similar to this:
