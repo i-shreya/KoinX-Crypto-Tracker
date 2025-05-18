@@ -5,12 +5,11 @@ KoinX-Crypto-Tracker is a distributed system built using Node.js, MongoDB, and N
 - **api-server**: Subscribes to NATS messages and stores crypto statistics to MongoDB.
 - **worker-server**: Publishes messages every 15 minutes to trigger data fetching and storage.
   
-The objective of this project is to demonstrate inter-service communication and scheduled data publishing using a message queue (NATS) while persisting real-time data into a MongoDB database through the API server.
+This assignment aims to demonstrate inter-service communication and scheduled data publishing using a message queue (NATS) while persisting real-time data into a MongoDB database through the API server.
 
 
 
-## Documentation
-Google Drive Link
+
 
 
 ## Setup Instructions
